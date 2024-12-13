@@ -55,3 +55,21 @@ def rnfm_read_mask(rnfm_grid, runoff_mapper_file="runoff_maps.nc"):
         raise e from None
     # convention is that ocean has id==-2
     rnfm_grid.mask = np.where(dbi == -2, 1, 0)
+
+def regular_grid_read_mask(reg_grid, reg_grid_mask_file):
+    """
+    Reads land sea mask defined on a regular grid
+    """
+    try:
+        with Dataset(reg_grid_mask_file) as nc:
+            sst = nc["sst"][...].T
+    except OSError as e:
+        _log.error(f"Could not open/read the ERA5 sea mask file: {e}")
+        raise e from None
+    except KeyError as e:
+        _log.error(
+            f"Could not find variable 'sst' in the runoff-mapper file"
+        )
+        raise e from None
+    # convention is that ocean has id==1
+    reg_grid.mask = sst

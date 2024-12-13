@@ -25,6 +25,7 @@ from rdy2cpl.grids.mask_modifiers import (
     mask_box,
     oifs_read_mask,
     rnfm_read_mask,
+    regular_grid_read_mask
 )
 from rdy2cpl.loader import _import_pyoasis
 
@@ -56,7 +57,7 @@ _base_grids = {
 }
 
 _mask_modifiers = {
-    f.__name__: f for f in (invert_mask, mask_box, oifs_read_mask, rnfm_read_mask)
+    f.__name__: f for f in (invert_mask, mask_box, oifs_read_mask, rnfm_read_mask, regular_grid_read_mask)
 }
 
 _default_model_spec_file = Path(__file__).parent / "model_specs/ecearth.yml"
@@ -128,3 +129,8 @@ def from_model_spec(name, model_spec_file=_default_model_spec_file):
         mm_func(base_grid, *mm.get("args", ()), **mm.get("kwargs", {}))
 
     return CoupleGrid(base_grid, name)
+
+
+if __name__ == "__main__":
+
+    from_model_spec('ILLL', model_spec_file='/perm/ecme4254/repos/rdy2cpl/rdy2cpl/grids/model_specs/test.yml')
