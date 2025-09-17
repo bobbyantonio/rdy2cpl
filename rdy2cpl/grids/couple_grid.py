@@ -18,6 +18,7 @@ from rdy2cpl.grids.base.ifs import (
     O400,
     O1280,
 )
+from rdy2cpl.grids.base.misc.ace2 import ACE2
 from rdy2cpl.grids.base.nemo.orca import OrcaTGrid, OrcaUGrid, OrcaVGrid
 from rdy2cpl.grids.base.regular import EquidistantLatLonGrid
 from rdy2cpl.grids.mask_modifiers import (
@@ -53,6 +54,7 @@ _base_grids = {
         O320,
         O400,
         O1280,
+        ACE2
     )
 }
 

@@ -8,7 +8,7 @@ from rdy2cpl.loader import pyoasis
 from rdy2cpl.namcouple.factory import from_yaml
 
 _log = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 
 def parse_cmdl_args():
